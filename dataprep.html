@@ -1,1 +1,156 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AQI Project - Data Prep</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        header { background: #2c3e50; color: #fff; padding: 20px 0; text-align: center; }
+        h1 { margin: 0; }
+        nav { background: #34495e; display: flex; justify-content: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; padding: 15px 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; font-weight: bold; }
+        nav a:hover { background-color: #1abc9c; }
+        nav a.active { background-color: #16a085; }
+        .container { max-width: 1000px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .content-block { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        h3 { border-left: 5px solid #1abc9c; padding-left: 10px; margin-top: 30px; }
+        img { max-width: 100%; height: auto; display: block; margin: 20px auto; border: 1px solid #ddd; }
+        pre { background: #222; color: #f1f1f1; padding: 15px; overflow-x: auto; border-radius: 5px; font-size: 13px; }
+        footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Data Preparation & EDA</h1>
+</header>
+
+<nav>
+    <a href="index.html">Introduction</a>
+    <a href="dataprep.html" class="active">Data Prep/EDA</a>
+    <a href="pca.html">PCA</a>
+    <a href="clustering.html">Clustering</a>
+    <a href="arm.html">ARM</a>
+    <a href="dt.html">DT</a>
+    <a href="nb.html">NB</a>
+    <a href="svm.html">SVM</a>
+    <a href="regression.html">Regression</a>
+    <a href="conclusions.html">Conclusions</a>
+</nav>
+
+<div class="container">
+
+    <div class="content-block">
+        <h2>Data Collection</h2>
+        <p>Data was gathered from the following sources:</p>
+        <ul>
+            <li><strong>API Source:</strong> <a href="https://waqi.info/">WAQI API</a> (World Air Quality Index)</li>
+            <li><strong>Static Dataset:</strong> <a href="#">City Day CSV (Kaggle)</a></li>
+        </ul>
+        
+        <h3>1. API Data Gathering Code</h3>
+        <p>The following Python code was used to fetch the live data:</p>
+        <pre>
+import requests
+import pandas as pd
+import time
+
+# NOTE: API Token hidden for security
+TOKEN = "YOUR_API_TOKEN_HERE" 
+
+cities = ["london", "new-york", "los-angeles", "paris", "beijing", 
+          "delhi", "tokyo", "seoul", "shanghai", "berlin"]
+
+data_list = []
+print("Starting Data Collection from WAQI API...")
+
+for city in cities:
+    url = f"https://api.waqi.info/feed/{city}/?token={TOKEN}"
+    try:
+        response = requests.get(url)
+        data = response.json()
+        if data['status'] == 'ok':
+            result = data['data']
+            iaqi = result.get('iaqi', {})
+            row = {
+                "City": city,
+                "AQI": result.get('aqi', 'N/A'),
+                "PM2.5": iaqi.get('pm25', {}).get('v', 'N/A'),
+                "PM10": iaqi.get('pm10', {}).get('v', 'N/A'),
+                "NO2": iaqi.get('no2', {}).get('v', 'N/A'),
+                "SO2": iaqi.get('so2', {}).get('v', 'N/A'),
+                "O3": iaqi.get('o3', {}).get('v', 'N/A'),
+                "Lat": result.get('city', {}).get('geo', [None, None])[0],
+                "Lon": result.get('city', {}).get('geo', [None, None])[1]
+            }
+            data_list.append(row)
+    except Exception as e:
+        print(f"Connection error for {city}: {e}")
+    time.sleep(1)
+
+if data_list:
+    df = pd.DataFrame(data_list)
+    df.to_csv("waqi_city_data.csv", index=False)
+    print("SUCCESS! Data saved.")
+        </pre>
+    </div>
+
+    <div class="content-block">
+        <h2>Exploratory Data Analysis (EDA)</h2>
+        <p>After cleaning the data (filling missing values with the mean and converting dates), the following 15 visualizations were generated to understand the dataset.</p>
+
+        <h3>1. Correlation Heatmap</h3>
+        <img src="viz1_heatmap.png" alt="Correlation Heatmap">
+
+        <h3>2. PM2.5 Distribution</h3>
+        <img src="viz2_histogram.png" alt="PM2.5 Histogram">
+
+        <h3>3. AQI Boxplot</h3>
+        <img src="viz3_boxplot.png" alt="AQI Boxplot">
+
+        <h3>4. NO2 vs PM2.5 Scatter</h3>
+        <img src="viz4_scatter.png" alt="Scatter Plot">
+
+        <h3>5. Trends Over Time</h3>
+        <img src="viz5_linechart.png" alt="Time Series">
+
+        <h3>6. Top 10 Polluted Cities</h3>
+        <img src="viz6_barchart.png" alt="Bar Chart Cities">
+
+        <h3>7. Pairplot</h3>
+        <img src="viz7_pairplot.png" alt="Pairplot">
+
+        <h3>8. AQI Density (Violin)</h3>
+        <img src="viz8_violin.png" alt="Violin Plot">
+
+        <h3>9. Seasonality (Monthly Avg)</h3>
+        <img src="viz9_seasonality.png" alt="Seasonality">
+
+        <h3>10. AQI Categories (Pie Chart)</h3>
+        <img src="viz10_piechart.png" alt="Pie Chart">
+
+        <h3>11. Weekend vs Weekday</h3>
+        <img src="viz11_weekend_vs_weekday.png" alt="Weekend Analysis">
+        
+        <h3>12. Yearly Trend</h3>
+        <img src="viz12_yearly_trend.png" alt="Yearly Trend">
+
+        <h3>13. City Comparison</h3>
+        <img src="viz13_city_comparison.png" alt="City Comparison">
+
+        <h3>14. NO2 Density</h3>
+        <img src="viz14_no2_kde.png" alt="NO2 Density">
+
+        <h3>15. PM2.5 vs PM10 Hexbin</h3>
+        <img src="viz15_hexbin_pm25_pm10.png" alt="Hexbin">
+    </div>
+
+</div>
+
+<footer>
+    <p>Copyright &copy; 2026 | AQI Data Science Project</p>
+</footer>
+
+</body>
+</html>
