@@ -102,27 +102,35 @@ if data_list:
 
         <h3>1. Correlation Heatmap</h3>
         <img src="viz1_heatmap.png" alt="Correlation Heatmap">
+        <p>The correlation matrix shows a moderate positive correlation (0.56) between PM2.5 and PM10, which is expected as they are related particulate matters. Interestingly, CO and SO2 also show a moderate link (0.47), potentially pointing to shared industrial or combustion sources.</p>
 
         <h3>2. PM2.5 Distribution</h3>
         <img src="viz2_histogram.png" alt="PM2.5 Histogram">
+        <p>The histogram shows a highly right-skewed distribution, meaning that while most days have low-to-moderate PM2.5 levels (under 100), there is a long tail of days with dangerous levels. The overlaid curve emphasizes this peak frequency at the lower end and the rapid drop-off as concentration increases.</p>
 
         <h3>3. AQI Boxplot</h3>
         <img src="viz3_boxplot.png" alt="AQI Boxplot">
+        <p>The boxplot clearly identifies a massive number of outliers to the right of the upper whisker, confirming that extreme pollution days are common anomalies. The median AQI (the line inside the box) sits below 200, but the outliers extend past 2000, showing the severity of peak pollution events.</p>
 
         <h3>4. NO2 vs PM2.5 Scatter</h3>
         <img src="viz4_scatter.png" alt="Scatter Plot">
+        <p>The scatter plot displays a dense cluster of data points at lower concentrations for both NO2 and PM2.5, but dispersion increases as values rise. While there is a general positive trend, the wide spread suggests that high NO2 does not always guarantee high PM2.5, implying other contributing factors.</p>
 
         <h3>5. Trends Over Time</h3>
         <img src="viz5_linechart.png" alt="Time Series">
+        <p>This time series shows high volatility in PM2.5 levels with massive spikes recurring annually, likely corresponding to the winter season. The data also contains some flat-lining sections (e.g., in 2016-2017) which might indicate missing data or sensor errors rather than actual constant pollution levels.</p>
 
         <h3>6. Top 10 Polluted Cities</h3>
         <img src="viz6_barchart.png" alt="Bar Chart Cities">
+        <p>Ahmedabad and Delhi stand out as the most polluted cities with significantly higher average AQI compared to others on the list. The difference between the top city (Ahmedabad) and the tenth (Kolkata) is substantial, indicating high regional variability in air quality.</p>
 
         <h3>7. Pairplot</h3>
         <img src="viz7_pairplot.png" alt="Pairplot">
+        <p>This grid shows relationships between multiple pollutants; notably, PM2.5 and NO2 appear to have a positive correlation, suggesting they may originate from similar sources like vehicle emissions. The diagonal histograms also confirm that most pollutants have right-skewed distributions, with lower concentrations being more frequent than high ones.</p>
 
         <h3>8. AQI Density (Violin)</h3>
         <img src="viz8_violin.png" alt="Violin Plot">
+        <p>The violin plot shows that the majority of AQI readings are concentrated between 50 and 200, indicating moderate pollution is the most common state. However, the long, thin tail extending to the right highlights infrequent but extreme pollution events exceeding 500 or even 1000 AQI.</p>
 
         <h3>9. Seasonality (Monthly Avg)</h3>
         <img src="viz9_seasonality.png" alt="Seasonality">
@@ -131,21 +139,27 @@ if data_list:
 
         <h3>10. AQI Categories (Pie Chart)</h3>
         <img src="viz10_piechart.png" alt="Pie Chart">
+        <p></p>
 
         <h3>11. Weekend vs Weekday</h3>
         <img src="viz11_weekend_vs_weekday.png" alt="Weekend Analysis">
+        <p>Surprisingly, the boxplots show almost identical distributions for weekdays and weekends, suggesting that reduced weekend commuter traffic has little to no impact on overall PM2.5 levels. Both categories share similar medians and extreme outliers, indicating that major pollution sources (like industry or dust) persist regardless of the day of the week.</p>
         
         <h3>12. Yearly Trend</h3>
         <img src="viz12_yearly_trend.png" alt="Yearly Trend">
+        <p>This line graph illustrates a promising downward trend in pollution levels, dropping from an average AQI of nearly 200 in 2015 to below 120 in 2020. The sharpest decline occurs between 2019 and 2020, likely reflecting the significant impact of COVID-19 lockdowns on reducing industrial and vehicular emissions.</p>
 
         <h3>13. City Comparison</h3>
         <img src="viz13_city_comparison.png" alt="City Comparison">
+        <p>This comparison highlights a massive disparity; Ahmedabad (blue) experiences extreme seasonal pollution spikes often exceeding 600 AQI, whereas Bengaluru (red) remains relatively stable and cleaner year-round. The consistent gaps between the lines show that Bengaluru's worst days are often still better than Ahmedabad's average days.</p>
 
         <h3>14. NO2 Density</h3>
         <img src="viz14_no2_kde.png" alt="NO2 Density">
+        <p>This chart presents a stark reality where 67.6% of the recorded days fall into the "Poor" air quality category, indicating a chronic public health issue. Conversely, "Good" air quality is a rarity, occurring on only 4.5% of days, reinforcing the severity of the pollution problem in this dataset.</p>
 
         <h3>15. PM2.5 vs PM10 Hexbin</h3>
         <img src="viz15_hexbin_pm25_pm10.png" alt="Hexbin">
+        <p>This hexbin plot visualizes the density of the relationship between PM2.5 and PM10, with the brightest yellow area indicating that the vast majority of observations occur where both values are low (under 100). The distinct linear trend visible in the dark/black hexes confirms that as PM2.5 increases, PM10 generally increases as well.</p>
     </div>
 
 </div>
