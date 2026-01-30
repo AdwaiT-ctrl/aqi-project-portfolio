@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AQI Analysis Project</title>
+    <title>AQI Project - Introduction</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; line-height: 1.6; color: #333; }
-        header { background: #2c3e50; color: #fff; padding: 1rem 0; text-align: center; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        header { background: #2c3e50; color: #fff; padding: 20px 0; text-align: center; }
+        h1 { margin: 0; }
         
-        /* Navigation Tabs Style */
-        nav { background: #34495e; display: flex; justify-content: center; flex-wrap: wrap; }
-        nav a { color: white; padding: 14px 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; }
+        /* Navigation Bar */
+        nav { background: #34495e; display: flex; justify-content: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; padding: 15px 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; font-weight: bold; }
         nav a:hover { background-color: #1abc9c; }
         nav a.active { background-color: #16a085; }
 
-        .container { max-width: 1000px; margin: auto; padding: 20px; }
-        .section { background: #f9f9f9; padding: 20px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h1, h2 { color: #2c3e50; }
-        img { max-width: 100%; height: auto; display: block; margin: 20px auto; border: 1px solid #ddd; }
+        .container { max-width: 1000px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .content-block { margin-bottom: 30px; }
+        img { max-width: 100%; height: auto; display: block; margin: 20px auto; border: 1px solid #ddd; padding: 5px; }
         
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
     </style>
@@ -26,7 +26,7 @@
 
 <header>
     <h1>Air Quality Index (AQI) Analysis</h1>
-    <p>Data Science Module 1 Project</p>
+    <p>Data Science Project | Module 1</p>
 </header>
 
 <nav>
@@ -43,23 +43,37 @@
 </nav>
 
 <div class="container">
-    <div class="section">
-        <h2>Introduction to Air Quality Analysis</h2>
-        <p><strong>[PASTE YOUR 2+ PARAGRAPHS FROM THE PREVIOUS CHAT HERE]</strong></p>
+    <div class="content-block">
+        <h2>Topic Overview</h2>
+        <p>
+            At present, air pollution is thought to be one of the largest environmental health risks globally. It is estimated by the World Health Organization (WHO) that 6.7 million premature deaths occur annually as a result of exposure to ambient air pollution and household air pollution together [1]. These pollutants, specifically Particulate Matter (PM2.5 and PM10), Nitrogen Dioxide (NO2), and Ground-level Ozone, are tacit exacerbators of cardiovascular diseases, stroke, chronic obstructive pulmonary disease (COPD), and lung cancer. In lesser-developed cities, the situation can be highly variable in terms of air quality depending on geography, industrial development, and local traffic regulations. The Air Quality Index (AQI) serves as a standard measure for relaying these risks to the public; using this metric, complex chemical concentrations become reduced to a straightforward color-based scale stretching from “Good” to “Hazardous.”
+        </p>
+        <p>
+            But AQI can only begin to be fully understood through a reading of the daily forecast if you find not only typical weather and air-pollution patterns but their inverse. Some, such as wildfires, are infrequent and catastrophic; others, like vehicle emissions or industrial runoff, are chronic and cyclical. Studies have suggested that lower-income communities are often most affected by this high burden of pollution, since they are more likely to live in neighborhoods where relatively high levels of AQI are recorded as a regular course of their proximity to highways and factories. Using historical air quality, weather forecasts, and readings from the sensors themselves, you can track levels as well as forecast dangerous spikes in pollution before they happen. This work is intended to address these issues to see how individual pollutants contribute towards the AQI and in predicting future air quality trends.
+        </p>
         
-        <img src="https://via.placeholder.com/800x400?text=Insert+AQI+Visual+Here" alt="AQI Visualization">
-        
-        <h3>Research Questions</h3>
-        <ul>
-            <li>[Paste Question 1]</li>
-            <li>[Paste Question 2]</li>
-            <li>[Paste Question 3...]</li>
-        </ul>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Air_Quality_Index_Levels.svg/1200px-Air_Quality_Index_Levels.svg.png" alt="AQI Scale">
+    </div>
+
+    <div class="content-block">
+        <h2>Research Questions</h2>
+        <ol>
+            <li>Which specific pollutant (PM2.5, NO2, SO2, or CO) has the highest correlation with an overall "Unhealthy" AQI rating?</li>
+            <li>Is there a detectable seasonal trend in air quality, such as improved air quality in winter versus summer?</li>
+            <li>Can we predict the AQI of a specific city based solely on weather data (temperature, humidity, and wind speed)?</li>
+            <li>Do rush-hour traffic times (8 AM and 5 PM) show a statistically significant increase in Carbon Monoxide levels compared to midday?</li>
+            <li>Are there distinct clusters of cities that share identical pollution profiles (e.g., "Industrial Cities" vs. "Traffic Cities")?</li>
+            <li>How accurately can we classify a day as "Safe" or "Hazardous" using only morning sensor data?</li>
+            <li>Does higher humidity positively or negatively correlate with particulate matter concentration?</li>
+            <li>What is the probability that a day with high Nitrogen Dioxide levels will also have high Ozone levels (Association Rule Mining)?</li>
+            <li>Can we forecast the AQI value for "tomorrow" based on the values of the previous 7 days?</li>
+            <li>Is there a significant difference in AQI volatility between coastal cities and inland cities?</li>
+        </ol>
     </div>
 </div>
 
 <footer>
-    <p>Created by [Your Name] | Data Science Portfolio</p>
+    <p>Copyright &copy; 2026 | AQI Data Science Project</p>
 </footer>
 
 </body>
