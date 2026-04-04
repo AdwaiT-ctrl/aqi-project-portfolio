@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+  <title id="title">Confusion matrix diagram</title>
+  <desc id="desc">A four-cell confusion matrix with true and predicted labels.</desc>
+  <rect width="900" height="420" rx="30" fill="#111827"/>
+  <text x="50" y="68" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="700">Confusion matrix</text>
+  <text x="50" y="102" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="17">Rows are actual labels and columns are predicted labels.</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle">
+    <rect x="190" y="150" width="220" height="90" fill="#14532d"/>
+    <rect x="410" y="150" width="220" height="90" fill="#7f1d1d"/>
+    <rect x="190" y="240" width="220" height="90" fill="#7f1d1d"/>
+    <rect x="410" y="240" width="220" height="90" fill="#14532d"/>
+
+    <rect x="190" y="150" width="440" height="180" fill="none" stroke="#ffffff" stroke-width="4"/>
+    <line x1="410" y1="150" x2="410" y2="330" stroke="#ffffff" stroke-width="4"/>
+    <line x1="190" y1="240" x2="630" y2="240" stroke="#ffffff" stroke-width="4"/>
+
+    <text x="300" y="205" fill="#ffffff">True Positive</text>
+    <text x="520" y="205" fill="#ffffff">False Negative</text>
+    <text x="300" y="295" fill="#ffffff">False Positive</text>
+    <text x="520" y="295" fill="#ffffff">True Negative</text>
+
+    <text x="300" y="360" fill="#cbd5e1" font-size="18" font-weight="600">Accuracy = (TP + TN) / Total</text>
+  </g>
+</svg>

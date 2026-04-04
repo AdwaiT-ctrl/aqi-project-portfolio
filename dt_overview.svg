@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Decision tree overview</title>
+  <desc id="desc">A decision tree branching from a root question to leaf predictions.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#2d6a4f"/>
+      <stop offset="100%" stop-color="#1b4332"/>
+    </linearGradient>
+    <linearGradient id="node" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#effaf1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="520" rx="32" fill="url(#bg)"/>
+  <text x="60" y="76" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700">Decision tree logic</text>
+  <text x="60" y="110" fill="#d8f3dc" font-family="Segoe UI, Arial, sans-serif" font-size="18">The tree asks a series of yes/no questions until it reaches a leaf prediction.</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#16324f" stroke="#d8f3dc" stroke-width="4" stroke-linecap="round">
+    <line x1="600" y1="170" x2="400" y2="260"/>
+    <line x1="600" y1="170" x2="800" y2="260"/>
+    <line x1="400" y1="260" x2="300" y2="350"/>
+    <line x1="400" y1="260" x2="500" y2="350"/>
+    <line x1="800" y1="260" x2="700" y2="350"/>
+    <line x1="800" y1="260" x2="900" y2="350"/>
+
+    <rect x="500" y="135" width="200" height="70" rx="18" fill="url(#node)" stroke="none"/>
+    <text x="600" y="164" text-anchor="middle" font-size="20" font-weight="700">Root split</text>
+    <text x="600" y="188" text-anchor="middle" font-size="15">Example: PM2.5 &gt; threshold?</text>
+
+    <rect x="300" y="235" width="200" height="70" rx="18" fill="url(#node)" stroke="none"/>
+    <text x="400" y="264" text-anchor="middle" font-size="20" font-weight="700">Left branch</text>
+    <text x="400" y="288" text-anchor="middle" font-size="15">Lower-risk split</text>
+
+    <rect x="700" y="235" width="200" height="70" rx="18" fill="url(#node)" stroke="none"/>
+    <text x="800" y="264" text-anchor="middle" font-size="20" font-weight="700">Right branch</text>
+    <text x="800" y="288" text-anchor="middle" font-size="15">Higher-risk split</text>
+
+    <rect x="220" y="345" width="160" height="68" rx="18" fill="#caffbf" stroke="none"/>
+    <text x="300" y="374" text-anchor="middle" font-size="18" font-weight="700">Leaf: Good</text>
+    <text x="300" y="396" text-anchor="middle" font-size="14">Class prediction</text>
+
+    <rect x="420" y="345" width="160" height="68" rx="18" fill="#ffd6a5" stroke="none"/>
+    <text x="500" y="374" text-anchor="middle" font-size="18" font-weight="700">Leaf: Moderate</text>
+    <text x="500" y="396" text-anchor="middle" font-size="14">Class prediction</text>
+
+    <rect x="620" y="345" width="160" height="68" rx="18" fill="#ffadad" stroke="none"/>
+    <text x="700" y="374" text-anchor="middle" font-size="18" font-weight="700">Leaf: Unhealthy</text>
+    <text x="700" y="396" text-anchor="middle" font-size="14">Class prediction</text>
+
+    <rect x="820" y="345" width="160" height="68" rx="18" fill="#ff758f" stroke="none"/>
+    <text x="900" y="374" text-anchor="middle" font-size="18" font-weight="700">Leaf: Hazardous</text>
+    <text x="900" y="396" text-anchor="middle" font-size="14">Class prediction</text>
+  </g>
+</svg>

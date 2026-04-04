@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Training and testing split</title>
+  <desc id="desc">A visual showing that training and testing data are separated and disjoint.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#5c677d"/>
+      <stop offset="100%" stop-color="#33415c"/>
+    </linearGradient>
+    <linearGradient id="train" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#d8f3dc"/>
+      <stop offset="100%" stop-color="#95d5b2"/>
+    </linearGradient>
+    <linearGradient id="test" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffd6a5"/>
+      <stop offset="100%" stop-color="#ffb703"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="420" rx="30" fill="url(#bg)"/>
+  <text x="60" y="72" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Training set and testing set</text>
+  <text x="60" y="106" fill="#e6e8ee" font-family="Segoe UI, Arial, sans-serif" font-size="18">A model learns on one subset and is evaluated on a separate, unseen subset.</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#17324f">
+    <rect x="90" y="155" width="450" height="165" rx="28" fill="url(#train)"/>
+    <text x="315" y="200" text-anchor="middle" font-size="28" font-weight="700">Training set</text>
+    <text x="315" y="232" text-anchor="middle" font-size="17">Used to fit the model</text>
+    <text x="315" y="262" text-anchor="middle" font-size="17">Contains labeled examples</text>
+    <text x="315" y="292" text-anchor="middle" font-size="17">Seen during learning</text>
+
+    <rect x="660" y="155" width="450" height="165" rx="28" fill="url(#test)"/>
+    <text x="885" y="200" text-anchor="middle" font-size="28" font-weight="700">Testing set</text>
+    <text x="885" y="232" text-anchor="middle" font-size="17">Used to measure accuracy</text>
+    <text x="885" y="262" text-anchor="middle" font-size="17">Contains unlabeled or held-out labels</text>
+    <text x="885" y="292" text-anchor="middle" font-size="17">Never used during training</text>
+
+    <line x1="540" y1="238" x2="625" y2="238" stroke="#ffffff" stroke-width="5" stroke-dasharray="14 12"/>
+    <polygon points="625,238 604,226 604,250" fill="#ffffff"/>
+    <text x="585" y="210" text-anchor="middle" fill="#ffffff" font-size="16">hold out</text>
+  </g>
+</svg>

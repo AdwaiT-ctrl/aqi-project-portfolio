@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Regression overview</title>
+  <desc id="desc">A side-by-side view of linear and logistic regression.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#7f5539"/>
+      <stop offset="100%" stop-color="#3d405b"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fefae0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="520" rx="32" fill="url(#bg)"/>
+  <text x="60" y="76" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700">Linear and logistic regression</text>
+  <text x="60" y="110" fill="#f1faee" font-family="Segoe UI, Arial, sans-serif" font-size="18">Both learn from data, but they answer different questions.</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#17324f">
+    <rect x="80" y="165" width="460" height="260" rx="26" fill="url(#card)"/>
+    <text x="310" y="212" text-anchor="middle" font-size="26" font-weight="700">Linear regression</text>
+    <text x="310" y="244" text-anchor="middle" font-size="17">Predicts a continuous value</text>
+    <path d="M135 360 C210 335, 260 280, 345 250 C395 232, 435 210, 500 190" fill="none" stroke="#b56576" stroke-width="6"/>
+    <circle cx="165" cy="348" r="7" fill="#b56576"/>
+    <circle cx="235" cy="322" r="7" fill="#b56576"/>
+    <circle cx="305" cy="282" r="7" fill="#b56576"/>
+    <circle cx="380" cy="232" r="7" fill="#b56576"/>
+    <circle cx="455" cy="205" r="7" fill="#b56576"/>
+
+    <rect x="660" y="165" width="460" height="260" rx="26" fill="url(#card)"/>
+    <text x="890" y="212" text-anchor="middle" font-size="26" font-weight="700">Logistic regression</text>
+    <text x="890" y="244" text-anchor="middle" font-size="17">Predicts class probability</text>
+    <path d="M710 345 C770 345, 800 345, 845 338 C900 328, 945 265, 990 220 C1020 190, 1050 175, 1085 170" fill="none" stroke="#2a9d8f" stroke-width="6"/>
+    <path d="M710 278 C760 278, 805 278, 850 275 C900 270, 955 262, 1010 246 C1060 233, 1090 210, 1110 188" fill="none" stroke="#264653" stroke-width="6"/>
+    <line x1="710" y1="320" x2="1110" y2="320" stroke="#6c757d" stroke-width="3" stroke-dasharray="12 10"/>
+    <text x="915" y="308" text-anchor="middle" font-size="16">decision boundary</text>
+  </g>
+</svg>
