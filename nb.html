@@ -13,6 +13,15 @@
         nav a.active { background-color: #16a085; }
         .container { max-width: 1000px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         .content-block { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .subsection { margin-top: 24px; }
+        .callout { background: #eef7f6; border-left: 5px solid #1abc9c; padding: 14px 18px; margin: 16px 0; }
+        .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 18px 0; }
+        .metric-card { background: #f8fbfc; border: 1px solid #dde7ea; border-radius: 14px; padding: 14px; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { border: 1px solid #d8e0e3; padding: 10px; text-align: center; }
+        th { background: #2c3e50; color: white; }
+        pre { background: #13212f; color: #f5f7fa; padding: 16px; overflow-x: auto; border-radius: 10px; }
+        img { max-width: 100%; height: auto; display: block; margin: 18px auto; border: 1px solid #ddd; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
     </style>
 </head>
@@ -40,7 +49,99 @@
 <div class="container">
     <div class="content-block">
         <h2>Naive Bayes (NB)</h2>
-        <p>This section will be updated.</p>
+
+        <div class="callout">
+            <strong>Dataset link:</strong> <a href="city_day.csv">city_day.csv</a> and the prepared feature table described on the <a href="dataprep.html">Data Prep / EDA</a> page.
+            <strong>Code link:</strong> <a href="module3_models.py">module3_models.py</a>
+        </div>
+
+        <div class="subsection" id="nb-overview">
+            <h3>Overview</h3>
+            <p>
+                Naive Bayes is a family of classification methods based on Bayes' rule. It is called "naive" because it assumes the input features are conditionally independent once the class is known, which is a simplifying assumption that often works surprisingly well. It is fast, easy to interpret, and especially useful when you want a strong baseline for text, frequency, or discretized data.
+            </p>
+            <img src="nb_overview.svg" alt="Naive Bayes family overview">
+            <div class="metric-grid">
+                <div class="metric-card"><strong>Gaussian NB</strong><br>Use for continuous values that look approximately normal.</div>
+                <div class="metric-card"><strong>Multinomial NB</strong><br>Use for counts or nonnegative frequencies, such as word counts.</div>
+                <div class="metric-card"><strong>Bernoulli NB</strong><br>Use for binary features that are either present or absent.</div>
+                <div class="metric-card"><strong>Categorical NB</strong><br>Use for discrete categories after binning or encoding.</div>
+            </div>
+            <p>
+                For this project, Multinomial NB is the required version, and it is paired with two other flavors so the comparison is more meaningful. Gaussian NB is a natural choice for continuous pollutant measurements, Bernoulli NB works well after turning a feature into a yes/no indicator, and Categorical NB can be used after discretizing the values into bins.
+            </p>
+        </div>
+
+        <div class="subsection" id="nb-data-prep">
+            <h3>Data Prep</h3>
+            <p>
+                Supervised learning needs labeled data, so the code creates a binary label using AQI >= 100 and then splits the frame into a training set and a testing set. The split is disjoint on purpose: the training set teaches the model pattern recognition, while the testing set checks whether those patterns generalize to unseen rows.
+            </p>
+            <img src="split_visual.svg" alt="Training and testing split visual">
+            <p>
+                The prepared feature set contains 16,010 complete rows from the AQI dataset using PM2.5, PM10, NO2, CO, SO2, and O3. The same base table can be transformed differently for each Naive Bayes flavor, which is why the code keeps the preprocessing steps explicit instead of forcing every model into the same format.
+            </p>
+        </div>
+
+        <div class="subsection" id="nb-code">
+            <h3>Code</h3>
+            <p>
+                The complete Python workflow is in <a href="module3_models.py">module3_models.py</a>. It loads the AQI data when available, creates the label, performs the train/test split, and evaluates Multinomial NB, Bernoulli NB, Gaussian NB, and Categorical NB.
+            </p>
+            <pre>from sklearn.naive_bayes import MultinomialNB, BernoulliNB, GaussianNB, CategoricalNB
+from sklearn.model_selection import train_test_split
+
+# Data is prepared once, then transformed per model.
+# Multinomial NB uses nonnegative values.
+# Bernoulli NB uses binary features.
+# Gaussian NB uses continuous measurements.
+# Categorical NB uses discretized bins.</pre>
+        </div>
+
+        <div class="subsection" id="nb-results">
+            <h3>Results</h3>
+            <p>
+                The script was validated in the current workspace on the attached AQI dataset. These are the measured outputs from that run, and they show that the choice of feature format has a real effect on performance.
+            </p>
+            <img src="confusion_matrix.svg" alt="Confusion matrix diagram">
+            <table>
+                <tr>
+                    <th>Model</th>
+                    <th>Accuracy</th>
+                    <th>Confusion Matrix</th>
+                </tr>
+                <tr>
+                    <td>Multinomial NB</td>
+                    <td>0.6860</td>
+                    <td>[[1264, 489], [768, 1482]]</td>
+                </tr>
+                <tr>
+                    <td>Bernoulli NB</td>
+                    <td>0.8808</td>
+                    <td>[[1584, 169], [308, 1942]]</td>
+                </tr>
+                <tr>
+                    <td>Gaussian NB</td>
+                    <td>0.8504</td>
+                    <td>[[1704, 49], [550, 1700]]</td>
+                </tr>
+                <tr>
+                    <td>Categorical NB</td>
+                    <td>0.8871</td>
+                    <td>[[1589, 164], [288, 1962]]</td>
+                </tr>
+            </table>
+            <p>
+                Categorical NB and Bernoulli NB were the strongest Naive Bayes variants on this data, while Multinomial NB was the weakest because the AQI features are continuous pollution measurements rather than true counts. That is useful for the assignment because it shows why the preprocessing choice matters as much as the algorithm.
+            </p>
+        </div>
+
+        <div class="subsection" id="nb-conclusion">
+            <h3>Conclusions</h3>
+            <p>
+                Naive Bayes is useful here because it gives a clean comparison across multiple data formats without requiring a very heavy model. The main takeaway is that the data representation matters as much as the algorithm itself: the same AQI table can lead to different behavior depending on whether the values are treated as counts, continuous values, or categories.
+            </p>
+        </div>
     </div>
 </div>
 

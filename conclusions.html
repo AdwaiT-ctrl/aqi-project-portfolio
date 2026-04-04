@@ -13,6 +13,8 @@
         nav a.active { background-color: #16a085; }
         .container { max-width: 1000px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         .content-block { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 18px 0; }
+        .summary-card { background: #f8fbfc; border: 1px solid #dde7ea; border-radius: 14px; padding: 14px; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
     </style>
 </head>
@@ -40,7 +42,33 @@
 <div class="container">
     <div class="content-block">
         <h2>Final Conclusions</h2>
-        <p>This section will be updated with the final story and findings.</p>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <strong>Introduction</strong>
+                <p>The project starts with the public health importance of AQI and the need to make air quality patterns easy to understand.</p>
+            </div>
+            <div class="summary-card">
+                <strong>Naive Bayes</strong>
+                <p>Different feature formats change how the model behaves, so the preprocessing step is part of the result.</p>
+            </div>
+            <div class="summary-card">
+                <strong>Decision Trees</strong>
+                <p>Tree structure is highly interpretable, which makes it easy to explain a decision path and compare root choices.</p>
+            </div>
+            <div class="summary-card">
+                <strong>Regression</strong>
+                <p>Logistic regression gives a clean binary baseline and pairs well with the probabilistic models used in the assignment.</p>
+            </div>
+        </div>
+        <p>
+            The biggest takeaway is that air quality problems are not just about one pollutant or one day. They are shaped by repeated patterns in the data, and those patterns become clearer when the project combines visualization, classification, and side-by-side model comparison.
+        </p>
+        <p>
+            In the validated run inside this workspace on the attached AQI dataset, logistic regression was the strongest classifier at 0.9093 accuracy, while the best Naive Bayes variants reached 0.8871. The tree model also performed well at 0.8968, which makes the final ranking close enough that the model choice should be justified by interpretability as well as score.
+        </p>
+        <p>
+            If I were extending the project further, I would keep the same feature table and add more tuned comparisons, such as deeper tree pruning, feature selection, and a stricter evaluation of which pollutant groups are most informative for classification.
+        </p>
     </div>
 </div>
 

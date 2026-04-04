@@ -13,6 +13,15 @@
         nav a.active { background-color: #16a085; }
         .container { max-width: 1000px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         .content-block { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .subsection { margin-top: 24px; }
+        .callout { background: #eef7f6; border-left: 5px solid #1abc9c; padding: 14px 18px; margin: 16px 0; }
+        .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 18px 0; }
+        .metric-card { background: #f8fbfc; border: 1px solid #dde7ea; border-radius: 14px; padding: 14px; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { border: 1px solid #d8e0e3; padding: 10px; text-align: center; }
+        th { background: #2c3e50; color: white; }
+        img { max-width: 100%; height: auto; display: block; margin: 18px auto; border: 1px solid #ddd; }
+        pre { background: #13212f; color: #f5f7fa; padding: 16px; overflow-x: auto; border-radius: 10px; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
     </style>
 </head>
@@ -40,7 +49,96 @@
 <div class="container">
     <div class="content-block">
         <h2>Decision Trees (DT)</h2>
-        <p>This section will be updated.</p>
+
+        <div class="callout">
+            <strong>Dataset link:</strong> <a href="city_day.csv">city_day.csv</a> and the same prepared table from <a href="dataprep.html">Data Prep / EDA</a>.
+            <strong>Code link:</strong> <a href="module3_models.py">module3_models.py</a>
+        </div>
+
+        <div class="subsection" id="dt-overview">
+            <h3>Overview</h3>
+            <p>
+                Decision trees are supervised models that split data into smaller and smaller groups by asking a sequence of questions. They are useful because the branching structure is easy to explain, and the final prediction can be traced back to the path the row followed. The same approach works for classification and regression, but here the focus is on classification.
+            </p>
+            <img src="dt_overview.svg" alt="Decision tree overview">
+            <div class="metric-grid">
+                <div class="metric-card"><strong>GINI</strong><br>Measures how mixed the classes are at a node.</div>
+                <div class="metric-card"><strong>Entropy</strong><br>Measures uncertainty or disorder in a node.</div>
+                <div class="metric-card"><strong>Information Gain</strong><br>Measures how much a split reduces entropy.</div>
+            </div>
+            <p>
+                A simple example is a node with 4 clean-air days and 4 polluted days. The entropy is high because the node is maximally mixed. If a split sends all 4 clean days to one branch and all 4 polluted days to another, the child nodes become much purer, so the information gain is high. This is why trees search for the split that best improves class purity.
+            </p>
+            <p>
+                It is generally possible to create an infinite number of trees because there are many ways to choose root features, thresholds, and stopping rules. Even with the same data, different tree depths, split criteria, and preprocessing choices can produce different structures. That is why pruning and depth limits are important.
+            </p>
+        </div>
+
+        <div class="subsection" id="dt-data-prep">
+            <h3>Data Prep</h3>
+            <p>
+                The decision tree can use the same feature table as Naive Bayes, which keeps the comparison consistent. The split between training and testing rows is disjoint, so the model is evaluated on examples it has never seen before.
+            </p>
+            <img src="split_visual.svg" alt="Training and testing split visual">
+        </div>
+
+        <div class="subsection" id="dt-code">
+            <h3>Code</h3>
+            <p>
+                The tree workflow is in <a href="module3_models.py">module3_models.py</a>. The script fits a decision tree classifier and also supports experiments with different root features and depth limits.
+            </p>
+            <pre>from sklearn.tree import DecisionTreeClassifier
+
+tree = DecisionTreeClassifier(
+    criterion="gini",
+    max_depth=4,
+    random_state=42,
+)
+
+tree.fit(X_train, y_train)
+predictions = tree.predict(X_test)</pre>
+        </div>
+
+        <div class="subsection" id="dt-results">
+            <h3>Results</h3>
+            <p>
+                The current run on the attached AQI dataset produced an accuracy of 0.8968 with the tree configuration in the script. The model is strong on this binary task, and the visual comparison below shows how changing the root node changes the explanation path even when the end goal is still the same.
+            </p>
+            <img src="confusion_matrix.svg" alt="Confusion matrix diagram">
+            <img src="dt_three_trees.svg" alt="Three decision tree variants">
+            <table>
+                <tr>
+                    <th>Tree Variant</th>
+                    <th>Root Choice</th>
+                    <th>Difference</th>
+                </tr>
+                <tr>
+                    <td>Tree 1</td>
+                    <td>PM2.5</td>
+                    <td>Baseline split on particulate matter</td>
+                </tr>
+                <tr>
+                    <td>Tree 2</td>
+                    <td>NO2</td>
+                    <td>Emphasizes traffic-related pollution</td>
+                </tr>
+                <tr>
+                    <td>Tree 3</td>
+                    <td>CO</td>
+                    <td>Highlights combustion and exposure differences</td>
+                </tr>
+            </table>
+            <p>
+                The verified confusion matrix for the fitted tree was [[1566, 187], [226, 2024]], which means the tree handled both classes well while still making a few boundary mistakes.
+            </p>
+        </div>
+
+        <div class="subsection" id="dt-conclusion">
+            <h3>Conclusions</h3>
+            <p>
+                Decision trees are attractive because they are easy to explain, but the simplicity comes with a tradeoff: they can overfit quickly if the tree is allowed to grow too deep. For this project, the main lesson is that interpretability is a major strength, especially when the goal is to explain why a day was classified as safe or hazardous.
+            </p>
+        </div>
     </div>
 </div>
 

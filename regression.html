@@ -13,6 +13,15 @@
         nav a.active { background-color: #16a085; }
         .container { max-width: 1000px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         .content-block { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .subsection { margin-top: 24px; }
+        .callout { background: #eef7f6; border-left: 5px solid #1abc9c; padding: 14px 18px; margin: 16px 0; }
+        .qa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 18px 0; }
+        .qa-card { background: #f8fbfc; border: 1px solid #dde7ea; border-radius: 14px; padding: 14px; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { border: 1px solid #d8e0e3; padding: 10px; text-align: center; }
+        th { background: #2c3e50; color: white; }
+        pre { background: #13212f; color: #f5f7fa; padding: 16px; overflow-x: auto; border-radius: 10px; }
+        img { max-width: 100%; height: auto; display: block; margin: 18px auto; border: 1px solid #ddd; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
     </style>
 </head>
@@ -40,7 +49,92 @@
 <div class="container">
     <div class="content-block">
         <h2>Regression Analysis</h2>
-        <p>This section will be updated.</p>
+
+        <div class="subsection" id="regression-qa">
+            <h3>Concept Questions</h3>
+            <div class="qa-grid">
+                <div class="qa-card">
+                    <strong>Linear regression</strong>
+                    <p>Linear regression predicts a continuous numeric outcome by fitting a line or plane that best matches the observed data. It is useful when the answer you want is a quantity, such as AQI value.</p>
+                </div>
+                <div class="qa-card">
+                    <strong>Logistic regression</strong>
+                    <p>Logistic regression predicts the probability of a class and then turns that probability into a binary label. It is used when the response is categorical, such as safe versus unsafe air.</p>
+                </div>
+                <div class="qa-card">
+                    <strong>Similarity and difference</strong>
+                    <p>Both are linear models that learn coefficients from data. The difference is the output: one predicts a number and the other predicts a class probability.</p>
+                </div>
+                <div class="qa-card">
+                    <strong>Sigmoid and MLE</strong>
+                    <p>Yes, logistic regression uses the sigmoid function to convert scores into probabilities, and maximum likelihood chooses coefficients that make the observed labels most probable.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection" id="regression-overview">
+            <h3>Overview</h3>
+            <img src="regression_overview.svg" alt="Regression overview">
+            <p>
+                In this project, regression is used in two ways. The written discussion explains the core ideas, while the code compares logistic regression against Naive Bayes on a binary label. That gives a useful baseline comparison between a probabilistic linear classifier and a probabilistic generative classifier.
+            </p>
+        </div>
+
+        <div class="subsection" id="regression-data-prep">
+            <h3>Data Prep</h3>
+            <div class="callout">
+                    <strong>Dataset link:</strong> <a href="city_day.csv">city_day.csv</a> and the same prepared table from <a href="dataprep.html">Data Prep / EDA</a> can be reused here.
+                <strong>Code link:</strong> <a href="module3_models.py">module3_models.py</a>
+            </div>
+            <p>
+                    The binary target is created with AQI >= 100, and the data is split into train and test subsets. That split must be disjoint so the accuracy reflects how the model performs on new rows instead of memorized rows.
+            </p>
+            <img src="split_visual.svg" alt="Training and testing split visual">
+        </div>
+
+        <div class="subsection" id="regression-code">
+            <h3>Code</h3>
+            <p>
+                The Python implementation in <a href="module3_models.py">module3_models.py</a> compares logistic regression and Multinomial Naive Bayes on the same labels so the results can be judged side by side.
+            </p>
+            <pre>from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import MultinomialNB
+
+# The full script handles preprocessing and the train/test split.
+logit = LogisticRegression(max_iter=2000, random_state=42)
+nb = MultinomialNB()</pre>
+        </div>
+
+        <div class="subsection" id="regression-results">
+            <h3>Results</h3>
+            <p>
+                The current run used the attached AQI dataset. Logistic regression performed slightly better than Multinomial NB on that run, which makes sense because the AQI features are continuous numeric values rather than count data.
+            </p>
+            <img src="confusion_matrix.svg" alt="Confusion matrix diagram">
+            <table>
+                <tr>
+                    <th>Model</th>
+                    <th>Accuracy</th>
+                    <th>Confusion Matrix</th>
+                    <th>What it predicts</th>
+                </tr>
+                <tr>
+                    <td>Logistic Regression</td>
+                    <td>0.9093</td>
+                    <td>[[1583, 170], [193, 2057]]</td>
+                    <td>Binary class probability</td>
+                </tr>
+                <tr>
+                    <td>Multinomial NB</td>
+                    <td>0.6860</td>
+                    <td>[[1264, 489], [768, 1482]]</td>
+                    <td>Class probability from nonnegative features</td>
+                </tr>
+            </table>
+            <p>
+                The main comparison is that logistic regression gives the strongest binary classification result here, while Multinomial NB is much weaker on this dataset because the features are not naturally counts. That makes the pair useful for the assignment because they represent two different ways to produce a class decision.
+            </p>
+        </div>
     </div>
 </div>
 
