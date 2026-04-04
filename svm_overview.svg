@@ -1,0 +1,147 @@
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="400" y="40" font-size="28" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Support Vector Machines (SVM)
+  </text>
+  
+  <!-- Left Box: SVM Concept -->
+  <rect x="30" y="80" width="220" height="380" fill="#ecf0f1" stroke="#34495e" stroke-width="2" rx="8"/>
+  <text x="140" y="110" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Core Concept
+  </text>
+  
+  <text x="50" y="140" font-size="12" fill="#333" font-family="Arial">
+    • Finds optimal hyperplane
+  </text>
+  <text x="50" y="160" font-size="12" fill="#333" font-family="Arial">
+      separating classes
+  </text>
+  <text x="50" y="185" font-size="12" fill="#333" font-family="Arial">
+    • Maximizes margin between
+  </text>
+  <text x="50" y="205" font-size="12" fill="#333" font-family="Arial">
+      boundary vectors
+  </text>
+  <text x="50" y="230" font-size="12" fill="#333" font-family="Arial">
+    • Handles non-linear
+  </text>
+  <text x="50" y="250" font-size="12" fill="#333" font-family="Arial">
+      separations via kernels
+  </text>
+  <text x="50" y="275" font-size="12" fill="#333" font-family="Arial">
+    • Support vectors are key
+  </text>
+  <text x="50" y="295" font-size="12" fill="#333" font-family="Arial">
+      training points
+  </text>
+  
+  <rect x="50" y="325" width="170" height="110" fill="white" stroke="#3498db" stroke-width="2" rx="4"/>
+  <text x="135" y="345" font-size="11" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    For AQI Prediction:
+  </text>
+  <text x="60" y="365" font-size="10" fill="#333" font-family="Arial">
+    RBF Kernel: Nonlinear
+  </text>
+  <text x="60" y="382" font-size="10" fill="#333" font-family="Arial">
+    C = 1.0: Regularization
+  </text>
+  <text x="60" y="399" font-size="10" fill="#333" font-family="Arial">
+    Separates pollutant
+  </text>
+  <text x="60" y="416" font-size="10" fill="#333" font-family="Arial">
+    patterns into clean/poor
+  </text>
+
+  <!-- Middle Box: Algorithm Steps -->
+  <rect x="290" y="80" width="220" height="380" fill="#e8f8f5" stroke="#16a085" stroke-width="2" rx="8"/>
+  <text x="400" y="110" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Training Process
+  </text>
+  
+  <circle cx="330" cy="150" r="18" fill="#16a085"/>
+  <text x="330" y="158" font-size="14" font-weight="bold" text-anchor="middle" fill="white">1</text>
+  <text x="360" y="155" font-size="11" fill="#333" font-family="Arial">Standardize features</text>
+  
+  <circle cx="330" cy="210" r="18" fill="#16a085"/>
+  <text x="330" y="218" font-size="14" font-weight="bold" text-anchor="middle" fill="white">2</text>
+  <text x="360" y="215" font-size="11" fill="#333" font-family="Arial">Map to feature space</text>
+  
+  <circle cx="330" cy="270" r="18" fill="#16a085"/>
+  <text x="330" y="278" font-size="14" font-weight="bold" text-anchor="middle" fill="white">3</text>
+  <text x="360" y="275" font-size="11" fill="#333" font-family="Arial">Find optimal hyperplane</text>
+  
+  <circle cx="330" cy="330" r="18" fill="#16a085"/>
+  <text x="330" y="338" font-size="14" font-weight="bold" text-anchor="middle" fill="white">4</text>
+  <text x="360" y="335" font-size="11" fill="#333" font-family="Arial">Support vectors define</text>
+  <text x="360" y="350" font-size="11" fill="#333" font-family="Arial">decision boundary</text>
+  
+  <rect x="310" y="380" width="160" height="60" fill="white" stroke="#3498db" stroke-width="2" rx="4"/>
+  <text x="390" y="400" font-size="11" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Prediction:
+  </text>
+  <text x="320" y="420" font-size="10" fill="#333" font-family="Arial">
+    Sign(Σ αᵢyᵢK(xᵢ,x) + b)
+  </text>
+  <text x="320" y="434" font-size="10" fill="#333" font-family="Arial">
+    K = kernel function
+  </text>
+
+  <!-- Right Box: Performance Metrics -->
+  <rect x="550" y="80" width="220" height="380" fill="#fdf2e9" stroke="#d68910" stroke-width="2" rx="8"/>
+  <text x="660" y="110" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    AQI Classification
+  </text>
+  
+  <rect x="570" y="135" width="180" height="50" fill="#fff9e6" stroke="#f39c12" stroke-width="2" rx="4"/>
+  <text x="660" y="155" font-size="12" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Overall Accuracy
+  </text>
+  <text x="660" y="177" font-size="20" font-weight="bold" text-anchor="middle" fill="#e74c3c">
+    90.93%
+  </text>
+  
+  <rect x="570" y="210" width="85" height="60" fill="#fef5e7" stroke="#f39c12" stroke-width="1" rx="3"/>
+  <text x="612" y="225" font-size="10" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Class 0 (Clean)
+  </text>
+  <text x="612" y="242" font-size="9" fill="#333" font-family="Arial">
+    Precision: 0.89
+  </text>
+  <text x="612" y="256" font-size="9" fill="#333" font-family="Arial">
+    Recall: 0.91
+  </text>
+  
+  <rect x="675" y="210" width="85" height="60" fill="#fef5e7" stroke="#f39c12" stroke-width="1" rx="3"/>
+  <text x="717" y="225" font-size="10" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Class 1 (Poor)
+  </text>
+  <text x="717" y="242" font-size="9" fill="#333" font-family="Arial">
+    Precision: 0.93
+  </text>
+  <text x="717" y="256" font-size="9" fill="#333" font-family="Arial">
+    Recall: 0.91
+  </text>
+  
+  <rect x="570" y="290" width="180" height="80" fill="white" stroke="#e74c3c" stroke-width="2" rx="4"/>
+  <text x="660" y="307" font-size="11" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Confusion Matrix
+  </text>
+  <text x="580" y="328" font-size="9" fill="#333" font-family="Arial">
+    TN: 1597 | FP: 156
+  </text>
+  <text x="580" y="345" font-size="9" fill="#333" font-family="Arial">
+    FN: 207 | TP: 2043
+  </text>
+  <text x="580" y="365" font-size="9" fill="#333" font-family="Arial" font-weight="bold">
+    Balanced Performance
+  </text>
+
+  <!-- Bottom: Key Insight -->
+  <rect x="30" y="480" width="740" height="60" fill="#d5f4e6" stroke="#27ae60" stroke-width="2" rx="8"/>
+  <text x="400" y="505" font-size="12" text-anchor="middle" fill="#27ae60" font-weight="bold">
+    ✓ SVM with RBF kernel achieves 90.93% accuracy — comparable to Logistic Regression
+  </text>
+  <text x="400" y="525" font-size="11" text-anchor="middle" fill="#27ae60">
+    RBF kernel captures non-linear relationships in pollutant patterns for superior air quality classification
+  </text>
+</svg>
