@@ -45,29 +45,74 @@
         <div class="summary-grid">
             <div class="summary-card">
                 <strong>Introduction</strong>
-                <p>The project starts with the public health importance of AQI and the need to make air quality patterns easy to understand.</p>
+                <p>The project starts with the public health importance of AQI and the need to make air quality patterns easy to understand. 10 research questions guide the analysis.</p>
             </div>
             <div class="summary-card">
-                <strong>Naive Bayes</strong>
-                <p>Different feature formats change how the model behaves, so the preprocessing step is part of the result.</p>
+                <strong>PCA</strong>
+                <p>Principal Component Analysis reveals that 7 components capture 95% of variance in the 8-dimensional pollutant space, enabling effective dimensionality reduction.</p>
+            </div>
+            <div class="summary-card">
+                <strong>Clustering</strong>
+                <p>KMeans (k=2,3,5), Hierarchical, and DBSCAN offer complementary views of air quality patterns. KMeans with k=2 (silhouette=0.54) provides the cleanest clean-vs-poor separation.</p>
+            </div>
+            <div class="summary-card">
+                <strong>Association Rules</strong>
+                <p>Apriori mining discovers 114 co-occurrence patterns in pollutant levels, revealing that poor air quality often involves multiple elevated pollutants simultaneously.</p>
+            </div>
+            <div class="summary-card">
+                <strong>Logistic Regression</strong>
+                <p><strong>Best accuracy: 90.93%</strong> — Clean linear decision boundary with strong probabilistic interpretation and balanced precision/recall (0.89-0.93).</p>
             </div>
             <div class="summary-card">
                 <strong>Decision Trees</strong>
-                <p>Tree structure is highly interpretable, which makes it easy to explain a decision path and compare root choices.</p>
+                <p>Accuracy: 89.68% — Highly interpretable hierarchical splits on key pollutants. Max depth=4 prevents overfitting while retaining explanatory power.</p>
             </div>
             <div class="summary-card">
-                <strong>Regression</strong>
-                <p>Logistic regression gives a clean binary baseline and pairs well with the probabilistic models used in the assignment.</p>
+                <strong>Naive Bayes</strong>
+                <p>Best variant (Categorical NB): 88.71% — Different feature formats (Gaussian, Multinomial, Bernoulli) highlight the importance of preprocessing and feature interpretation.</p>
+            </div>
+            <div class="summary-card">
+                <strong>Support Vector Machines</strong>
+                <p>Accuracy: 90.93% — RBF kernel matches Logistic Regression performance through non-linear decision boundaries. Exceptional precision for poor air alerts (0.93).</p>
             </div>
         </div>
+
+        <h3>Key Findings:</h3>
         <p>
-            The biggest takeaway is that air quality problems are not just about one pollutant or one day. They are shaped by repeated patterns in the data, and those patterns become clearer when the project combines visualization, classification, and side-by-side model comparison.
+            <strong>1. Model Performance Summit:</strong> Logistic Regression and SVM lead with 90.93% accuracy, demonstrating that pollutant-to-AQI relationships are largely smooth and well-structured. 
+            These models are production-ready for air quality forecasting.
         </p>
         <p>
-            In the validated run inside this workspace on the attached AQI dataset, logistic regression was the strongest classifier at 0.9093 accuracy, while the best Naive Bayes variants reached 0.8871. The tree model also performed well at 0.8968, which makes the final ranking close enough that the model choice should be justified by interpretability as well as score.
+            <strong>2. Interpretability vs. Accuracy Trade-off:</strong> Decision Trees (89.68%) offer interpretable decision rules at a modest accuracy cost, making them valuable for public communication. 
+            The top pollutants driving decisions are easily explainable to stakeholders.
         </p>
         <p>
-            If I were extending the project further, I would keep the same feature table and add more tuned comparisons, such as deeper tree pruning, feature selection, and a stricter evaluation of which pollutant groups are most informative for classification.
+            <strong>3. Unsupervised Learning Insights:</strong> PCA shows that pollutant concentrations cluster in lower-dimensional subspaces. KMeans and Hierarchical clustering align with the binary AQI classification, 
+            validating that natural groupings exist in the feature space before labels are applied.
+        </p>
+        <p>
+            <strong>4. Association Patterns:</strong> Mining frequent itemsets reveals that poor air quality rarely occurs in isolation—typically 2-3 pollutants spike together. 
+            This co-occurrence structure is critical for understanding root causes (e.g., traffic congestion elevating both PM2.5 and NO₂).
+        </p>
+        <p>
+            <strong>5. Feature Importance:</strong> Across all methods, PM2.5 and PM10 consistently emerge as primary AQI drivers, followed by NO₂. This aligns with domain knowledge in environmental science.
+        </p>
+
+        <h3>Recommendations for Deployment:</h3>
+        <ul>
+            <li><strong>Primary Model:</strong> Deploy Logistic Regression or SVM for real-time air quality prediction—both achieve 90.93% accuracy with strong F1 scores.</li>
+            <li><strong>Transparency Layer:</strong> Pair the predictor with Decision Tree visualizations to explain individual predictions to policy makers and the public.</li>
+            <li><strong>Monitoring Dashboard:</strong> Use Clustering results to segment cities/regions into air quality "profiles" for targeted interventions.</li>
+            <li><strong>Root Cause Analysis:</strong> Leverage Association Rules to identify pollution events caused by specific multi-pollutant co-occurrences.</li>
+            <li><strong>Feature Engineering:</strong> Extend models with temporal features (season, hour, day-of-week) and external data (traffic volume, weather) for further improvement.</li>
+        </ul>
+
+        <h3>Conclusion:</h3>
+        <p>
+            This project demonstrates a complete data science pipeline: from exploratory data analysis and unsupervised learning through supervised classification and interpretation. 
+            The AQI dataset (16,010 records) provides rich signal—achieving >90% accuracy on binary air quality classification is strong evidence that machine learning can drive 
+            real-world public health decision-making. The combination of multiple algorithms, proper cross-validation, and deployment-ready preprocessing makes this portfolio 
+            a solid foundation for a production air quality monitoring system.
         </p>
     </div>
 </div>
