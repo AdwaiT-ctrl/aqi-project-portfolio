@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AQI Project - ARM</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
@@ -11,8 +12,12 @@
         nav a { color: white; padding: 15px 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; font-weight: bold; }
         nav a:hover { background-color: #1abc9c; }
         nav a.active { background-color: #16a085; }
-        .container { max-width: 1000px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .container { max-width: 1050px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         .content-block { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .subsection { margin-top: 24px; }
+        .callout { background: #eef7f6; border-left: 5px solid #1abc9c; padding: 14px 18px; margin: 16px 0; }
+        img { max-width: 100%; height: auto; display: block; margin: 18px auto; border: 1px solid #ddd; }
+        ul li { margin: 8px 0; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
     </style>
 </head>
@@ -41,7 +46,58 @@
 <div class="container">
     <div class="content-block">
         <h2>Association Rule Mining (ARM)</h2>
-        <p>This section will be updated.</p>
+
+        <div class="callout">
+            <strong>Dataset link:</strong> <a href="city_day.csv">city_day.csv</a><br>
+            <strong>Code link:</strong> <a href="module2_unsupervised.py">module2_unsupervised.py</a>
+        </div>
+
+        <div class="subsection">
+            <h3>(a) Overview</h3>
+            <p>
+                Association Rule Mining (ARM) discovers co-occurrence patterns in transaction-style data and represents them as rules of the form A -> B. Support measures how frequently itemsets appear, confidence measures how often B occurs when A occurs, and lift measures whether the rule is stronger than chance. Apriori works by first finding frequent itemsets above a support threshold, then generating candidate rules and filtering them by confidence and lift.
+            </p>
+            <img src="arm_overview.svg" alt="ARM metrics overview">
+            <img src="apriori_flow.svg" alt="Apriori algorithm flow">
+        </div>
+
+        <div class="subsection">
+            <h3>(b) Data Prep</h3>
+            <p>
+                ARM requires unlabeled transaction data, so I converted each row into a transaction of discretized pollutant items (for example PM2.5_HIGH) plus season tags. No prediction label is used in this format.
+            </p>
+            <img src="arm_transaction_sample.png" alt="ARM transaction sample">
+        </div>
+
+        <div class="subsection">
+            <h3>(c) Code</h3>
+            <p>
+                ARM was coded in Python using <em>mlxtend</em> with Apriori and rule generation. Full script: <a href="module2_unsupervised.py">module2_unsupervised.py</a>.
+            </p>
+        </div>
+
+        <div class="subsection">
+            <h3>(d) Results</h3>
+            <p>
+                Thresholds used: <strong>min support = 0.08</strong>, <strong>min confidence = 0.35</strong>. The run produced <strong>114 rules</strong> from 16,408 transactions.
+            </p>
+            <ul>
+                <li>Top 15 by support: <a href="arm_top15_support.csv">arm_top15_support.csv</a></li>
+                <li>Top 15 by confidence: <a href="arm_top15_confidence.csv">arm_top15_confidence.csv</a></li>
+                <li>Top 15 by lift: <a href="arm_top15_lift.csv">arm_top15_lift.csv</a></li>
+            </ul>
+            <img src="arm_top_support.png" alt="Top support rules">
+            <img src="arm_top_confidence.png" alt="Top confidence rules">
+            <img src="arm_top_lift.png" alt="Top lift rules">
+            <img src="arm_network.png" alt="ARM network visualization">
+        </div>
+
+        <div class="subsection">
+            <h3>(e) Conclusions</h3>
+            <p>
+                ARM reveals which pollutant categories and seasons tend to appear together, which helps explain recurring pollution regimes instead of just individual measurements. In this AQI context, the rules can help identify combinations of conditions that repeatedly co-occur with poor air quality patterns.
+            </p>
+        </div>
     </div>
 </div>
 

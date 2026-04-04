@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AQI Project - Model Analysis</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
@@ -11,8 +12,14 @@
         nav a { color: white; padding: 15px 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; font-weight: bold; }
         nav a:hover { background-color: #1abc9c; }
         nav a.active { background-color: #16a085; }
-        .container { max-width: 1000px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .container { max-width: 1050px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         .content-block { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .subsection { margin-top: 24px; }
+        .callout { background: #eef7f6; border-left: 5px solid #1abc9c; padding: 14px 18px; margin: 16px 0; }
+        img { max-width: 100%; height: auto; display: block; margin: 18px auto; border: 1px solid #ddd; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { border: 1px solid #d8e0e3; padding: 10px; text-align: left; }
+        th { background: #2c3e50; color: white; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
     </style>
 </head>
@@ -38,7 +45,73 @@
 
 <div class="container">
     <div class="content-block">
-        <h2>PCA Analysis</h2> <p>This section will be updated.</p>
+        <h2>PCA Analysis</h2>
+
+        <div class="callout">
+            <strong>Dataset link:</strong> <a href="city_day.csv">city_day.csv</a><br>
+            <strong>Code link:</strong> <a href="module2_unsupervised.py">module2_unsupervised.py</a>
+        </div>
+
+        <div class="subsection">
+            <h3>What is PCA?</h3>
+            <p>
+                Principal Component Analysis (PCA) is a dimensionality reduction method that transforms many correlated variables into a smaller number of uncorrelated components while preserving as much variance as possible. In this project, PCA helps compress pollutant features into 2D and 3D views for visualization and clustering, and it also shows which directions in the data carry the most information.
+            </p>
+        </div>
+
+        <div class="subsection">
+            <h3>Data Choice and Preparation</h3>
+            <p>
+                I used pollutant measurements from the AQI dataset (PM2.5, PM10, NO2, CO, SO2, O3, NH3, NOx). The selected PCA frame contains quantitative features only, with missing values removed for these columns.
+            </p>
+            <img src="pca_data_sample.png" alt="PCA source data sample">
+            <p>
+                After selecting the quantitative columns, I normalized the data with <strong>StandardScaler</strong> so each feature has mean 0 and standard deviation 1.
+            </p>
+            <img src="pca_cleaned_sample.png" alt="PCA standardized data sample">
+        </div>
+
+        <div class="subsection">
+            <h3>PCA with n_components = 2 and 3</h3>
+            <p>
+                PCA was run twice: first with 2 components (for a 2D projection) and then with 3 components (for a 3D projection).
+            </p>
+            <img src="pca_2d_scatter.png" alt="PCA 2D visualization">
+            <img src="pca_3d_scatter.png" alt="PCA 3D visualization">
+            <table>
+                <tr>
+                    <th>Setting</th>
+                    <th>Variance Retained</th>
+                    <th>Interpretation</th>
+                </tr>
+                <tr>
+                    <td>2 components</td>
+                    <td>58.90%</td>
+                    <td>A strong compressed view for visualization, but some information is lost.</td>
+                </tr>
+                <tr>
+                    <td>3 components</td>
+                    <td>70.42%</td>
+                    <td>More structure is retained and it works better for downstream clustering.</td>
+                </tr>
+            </table>
+            <img src="pca_variance_curve.png" alt="PCA cumulative variance curve">
+        </div>
+
+        <div class="subsection">
+            <h3>How Many Dimensions for 95% Variance?</h3>
+            <p>
+                The cumulative variance analysis shows that <strong>7 components</strong> are required to retain at least 95% of the information in this PCA feature set.
+            </p>
+        </div>
+
+        <div class="subsection">
+            <h3>Top Three Eigenvalues</h3>
+            <p>
+                The top three eigenvalues from the PCA output are approximately <strong>3.7106</strong>, <strong>1.0017</strong>, and <strong>0.9216</strong>, indicating the first principal direction captures the largest share of variance.
+            </p>
+            <img src="pca_eigenvalues_output.png" alt="PCA eigenvalues output">
+        </div>
     </div>
 </div>
 

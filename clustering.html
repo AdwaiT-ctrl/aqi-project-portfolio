@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AQI Project - Model Analysis</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
@@ -11,8 +12,14 @@
         nav a { color: white; padding: 15px 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; font-weight: bold; }
         nav a:hover { background-color: #1abc9c; }
         nav a.active { background-color: #16a085; }
-        .container { max-width: 1000px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .container { max-width: 1050px; margin: 30px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         .content-block { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .subsection { margin-top: 24px; }
+        .callout { background: #eef7f6; border-left: 5px solid #1abc9c; padding: 14px 18px; margin: 16px 0; }
+        img { max-width: 100%; height: auto; display: block; margin: 18px auto; border: 1px solid #ddd; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { border: 1px solid #d8e0e3; padding: 10px; text-align: left; }
+        th { background: #2c3e50; color: white; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
     </style>
 </head>
@@ -39,7 +46,73 @@
 
 <div class="container">
     <div class="content-block">
-        <h2>Clustering</h2> <p>This section will be updated.</p>
+        <h2>Clustering</h2>
+
+        <div class="callout">
+            <strong>Dataset link:</strong> <a href="city_day.csv">city_day.csv</a><br>
+            <strong>Code link:</strong> <a href="module2_unsupervised.py">module2_unsupervised.py</a>
+        </div>
+
+        <div class="subsection">
+            <h3>(a) Compare and Contrast: KMeans vs Hierarchical vs DBSCAN</h3>
+            <p>
+                KMeans is a partition-based method that assigns each point to one of k clusters and optimizes compactness around centroids. Hierarchical clustering builds a tree of merges/splits and is useful when you want to inspect nested structure through a dendrogram. DBSCAN is density-based, does not require k in advance, and can mark low-density points as noise, which is useful for anomaly-heavy environmental data.
+            </p>
+        </div>
+
+        <div class="subsection">
+            <h3>(b) Data Prep</h3>
+            <p>
+                I used a labeled AQI dataset and kept the original label column separately for later comparison. Then I removed labels from the modeling input, retained quantitative columns only, and standardized the features to mean 0 and standard deviation 1 with StandardScaler.
+            </p>
+            <img src="clustering_labeled_sample.png" alt="Clustering labeled sample">
+            <img src="clustering_prepared_sample.png" alt="Clustering prepared sample">
+            <p>
+                I also reduced the normalized data to 3 dimensions using PCA for clustering visualizations. The retained variance after PCA(3) is <strong>83.03%</strong>.
+            </p>
+        </div>
+
+        <div class="subsection">
+            <h3>(c) Code and Results</h3>
+            <p>
+                Using silhouette analysis on candidate values of k, the three best values selected were <strong>k = 2, 3, 5</strong>. These values were then used for KMeans, and centroid markers were included in each 3D plot.
+            </p>
+            <img src="clustering_silhouette_scores.png" alt="Silhouette scores for KMeans">
+            <img src="clustering_kmeans_k2.png" alt="KMeans k2">
+            <img src="clustering_kmeans_k3.png" alt="KMeans k3">
+            <img src="clustering_kmeans_k5.png" alt="KMeans k5">
+
+            <p>
+                Hierarchical clustering (Ward linkage) was visualized with a dendrogram. Compared with KMeans, the dendrogram gives a richer view of merge distances and possible cut levels, while KMeans gives cleaner fixed-k partitions.
+            </p>
+            <img src="clustering_dendrogram.png" alt="Hierarchical dendrogram">
+
+            <p>
+                DBSCAN identified dense regions plus noise points. In this run, DBSCAN produced <strong>2 cluster IDs including noise</strong> and flagged <strong>695 points as noise</strong>, which highlights potential outlier pollution patterns.
+            </p>
+            <img src="clustering_dbscan.png" alt="DBSCAN clustering">
+
+            <table>
+                <tr>
+                    <th>k</th>
+                    <th>Silhouette Score</th>
+                </tr>
+                <tr><td>2</td><td>0.5356</td></tr>
+                <tr><td>3</td><td>0.4898</td></tr>
+                <tr><td>4</td><td>0.3676</td></tr>
+                <tr><td>5</td><td>0.3718</td></tr>
+                <tr><td>6</td><td>0.3127</td></tr>
+                <tr><td>7</td><td>0.3153</td></tr>
+                <tr><td>8</td><td>0.3110</td></tr>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <h3>(d) Conclusions</h3>
+            <p>
+                For this AQI topic, KMeans gave the clearest partitioning when k was chosen by silhouette scores, hierarchical clustering was strongest for interpretation of cluster structure at multiple levels, and DBSCAN was best for detecting noise/outlier behavior. Together, they provide complementary views of pollution pattern groupings rather than one single "best" answer.
+            </p>
+        </div>
     </div>
 </div>
 

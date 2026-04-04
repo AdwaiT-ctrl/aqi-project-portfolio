@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="t d">
+  <title id="t">Apriori flow</title>
+  <desc id="d">Flow diagram of Apriori algorithm.</desc>
+  <rect width="1200" height="420" rx="26" fill="#1d3557"/>
+  <text x="60" y="66" fill="#fff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Apriori Algorithm Workflow</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="60" y="130" width="220" height="190" rx="18" fill="#f1faee"/>
+    <text x="170" y="180" text-anchor="middle" fill="#17324f" font-size="22" font-weight="700">Transactions</text>
+    <text x="170" y="214" text-anchor="middle" fill="#17324f" font-size="16">Unlabeled basket</text>
+    <text x="170" y="238" text-anchor="middle" fill="#17324f" font-size="16">of items</text>
+
+    <rect x="340" y="130" width="220" height="190" rx="18" fill="#f1faee"/>
+    <text x="450" y="180" text-anchor="middle" fill="#17324f" font-size="22" font-weight="700">Frequent Sets</text>
+    <text x="450" y="214" text-anchor="middle" fill="#17324f" font-size="16">Keep itemsets above</text>
+    <text x="450" y="238" text-anchor="middle" fill="#17324f" font-size="16">min support</text>
+
+    <rect x="620" y="130" width="220" height="190" rx="18" fill="#f1faee"/>
+    <text x="730" y="180" text-anchor="middle" fill="#17324f" font-size="22" font-weight="700">Rule Generation</text>
+    <text x="730" y="214" text-anchor="middle" fill="#17324f" font-size="16">Generate A -> B</text>
+    <text x="730" y="238" text-anchor="middle" fill="#17324f" font-size="16">and score metrics</text>
+
+    <rect x="900" y="130" width="220" height="190" rx="18" fill="#f1faee"/>
+    <text x="1010" y="180" text-anchor="middle" fill="#17324f" font-size="22" font-weight="700">Top Rules</text>
+    <text x="1010" y="214" text-anchor="middle" fill="#17324f" font-size="16">Sort by support,</text>
+    <text x="1010" y="238" text-anchor="middle" fill="#17324f" font-size="16">confidence, lift</text>
+
+    <line x1="280" y1="225" x2="334" y2="225" stroke="#ffb703" stroke-width="5"/>
+    <polygon points="334,225 318,214 318,236" fill="#ffb703"/>
+    <line x1="560" y1="225" x2="614" y2="225" stroke="#ffb703" stroke-width="5"/>
+    <polygon points="614,225 598,214 598,236" fill="#ffb703"/>
+    <line x1="840" y1="225" x2="894" y2="225" stroke="#ffb703" stroke-width="5"/>
+    <polygon points="894,225 878,214 878,236" fill="#ffb703"/>
+  </g>
+</svg>
