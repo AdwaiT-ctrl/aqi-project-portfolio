@@ -17,6 +17,9 @@
         .callout { background: #eef7f6; border-left: 5px solid #1abc9c; padding: 14px 18px; margin: 16px 0; }
         .qa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 18px 0; }
         .qa-card { background: #f8fbfc; border: 1px solid #dde7ea; border-radius: 14px; padding: 14px; }
+        .evidence-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+        .evidence-card { background: #fbfdff; border: 1px solid #d8e0e3; border-radius: 12px; padding: 10px; }
+        .caption { margin: 6px 0 0; font-size: 13px; color: #4a5a66; }
         table { width: 100%; border-collapse: collapse; margin: 16px 0; }
         th, td { border: 1px solid #d8e0e3; padding: 10px; text-align: center; }
         th { background: #2c3e50; color: white; }
@@ -90,6 +93,16 @@
                     The binary target is created with AQI >= 100, and the data is split into train and test subsets. That split must be disjoint so the accuracy reflects how the model performs on new rows instead of memorized rows.
             </p>
             <img src="split_visual.svg" alt="Training and testing split visual">
+            <div class="evidence-grid">
+                <div class="evidence-card">
+                    <img src="regression_cleaned_snapshot.png" alt="Regression cleaned data snapshot">
+                    <p class="caption">Snapshot of cleaned data used for logistic regression modeling.</p>
+                </div>
+                <div class="evidence-card">
+                    <img src="regression_train_test_snapshot.png" alt="Regression train and test snapshot">
+                    <p class="caption">Snapshot of train and test rows used for regression model evaluation.</p>
+                </div>
+            </div>
         </div>
 
         <div class="subsection" id="regression-code">
@@ -110,7 +123,8 @@ nb = MultinomialNB()</pre>
             <p>
                 The current run used the attached AQI dataset. Logistic regression performed slightly better than Multinomial NB on that run, which makes sense because the AQI features are continuous numeric values rather than count data.
             </p>
-            <img src="confusion_matrix.svg" alt="Confusion matrix diagram">
+            <img src="regression_confusion_matrix.png" alt="Logistic regression confusion matrix">
+            <p class="caption">User-friendly confusion matrix visualization for logistic regression predictions.</p>
             <table>
                 <tr>
                     <th>Model</th>
