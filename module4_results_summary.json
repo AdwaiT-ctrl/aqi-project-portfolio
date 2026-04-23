@@ -1,0 +1,37 @@
+{
+  "dataset_rows": 16010,
+  "train_rows": 12007,
+  "test_rows": 4003,
+  "svm_best_per_kernel": {
+    "linear": {
+      "C": 0.1,
+      "accuracy": 0.9103172620534599
+    },
+    "poly": {
+      "C": 1.0,
+      "accuracy": 0.9110666999750188
+    },
+    "rbf": {
+      "C": 100.0,
+      "accuracy": 0.9128153884586561
+    }
+  },
+  "ensemble_results": [
+    {
+      "model": "Random Forest",
+      "accuracy": 0.9240569572820385
+    },
+    {
+      "model": "AdaBoost",
+      "accuracy": 0.9183112665500874
+    },
+    {
+      "model": "Soft Voting",
+      "accuracy": 0.9180614539095678
+    }
+  ],
+  "ensemble_best": {
+    "model": "Random Forest",
+    "accuracy": 0.9240569572820385
+  }
+}
