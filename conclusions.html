@@ -15,6 +15,13 @@
         .content-block { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 18px 0; }
         .summary-card { background: #f8fbfc; border: 1px solid #dde7ea; border-radius: 14px; padding: 14px; }
+        .callout { background: #eef7f6; border-left: 5px solid #1abc9c; padding: 14px 18px; margin: 16px 0; }
+        .takeaway-list { margin: 10px 0 18px 22px; }
+        .takeaway-list li { margin: 8px 0; line-height: 1.5; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { border: 1px solid #d8e0e3; padding: 10px; text-align: left; }
+        th { background: #2c3e50; color: white; }
+        img { max-width: 100%; height: auto; display: block; margin: 16px auto; border: 1px solid #d8e0e3; border-radius: 8px; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 40px; }
     </style>
 </head>
@@ -43,22 +50,72 @@
 <div class="container">
     <div class="content-block">
         <h2>Final Conclusions</h2>
+
+        <div class="callout">
+            <strong>Core message:</strong> Air quality patterns are measurable, understandable, and predictable enough to support earlier warnings and better day-to-day decisions.
+        </div>
+
         <p>
-            The biggest message from this project is simple: air quality is not random. When we look at many days together, clear patterns appear. Some cities stay mostly stable, while others rise and fall quickly. Seeing these patterns early can help people plan safer routines.
+            The biggest message from this project is that air quality is not random. When we study AQI over long time periods and across different cities, repeated trends appear. Some places remain relatively stable, while others show frequent spikes. That pattern-based behavior is important because it allows communities to move from reacting late to preparing early.
         </p>
+
         <p>
-            Another key takeaway is that no single daily number tells the whole story. Air quality changes with time, place, and local activity. Looking at trends over months and years gives a much better picture than checking one day in isolation.
+            Another key takeaway is that one day of AQI data is never enough to tell the full story. Air quality changes with traffic, weather, season, and city structure. Looking at trends over months and years gives a more reliable picture of public risk than checking isolated daily values.
         </p>
+
         <img src="viz12_yearly_trend.png" alt="Yearly AQI trend overview">
+
+        <h3>Most Important Findings</h3>
+        <ul class="takeaway-list">
+            <li>Strong recurring AQI patterns were visible in the historical data.</li>
+            <li>Classification models consistently separated safer and riskier days with high reliability.</li>
+            <li>SVM and Ensemble methods produced the strongest overall predictive performance in this project run.</li>
+            <li>Model agreement across methods increased confidence that the results were robust, not accidental.</li>
+        </ul>
+
         <p>
-            The model sections of this site all point in the same direction: we can make useful predictions about whether a day is likely to have safer or riskier air. That does not replace health advice, but it can support practical decisions like outdoor school activity, exercise timing, and local warning alerts.
+            The model sections of this site all point in the same direction: daily AQI conditions can be predicted well enough to support practical planning. This does not replace medical guidance, but it can improve decisions such as school outdoor schedules, sports timing, elderly-care advisories, and city-level warning notices.
         </p>
+
         <p>
-            The new Module 4 work adds two important strengths. SVM helps separate clean and poor air days very clearly, and Ensemble Learning combines multiple model opinions to improve reliability. In plain terms, this means the final prediction is less likely to be thrown off by one weak signal.
+            Module 4 added two major strengths to the project. First, SVM demonstrated strong separation between clean and poor-air days across multiple kernel choices. Second, Ensemble Learning improved stability by combining model viewpoints, reducing the chance that a single weak model would dominate the final result.
         </p>
+
+        <table>
+            <tr>
+                <th>Question</th>
+                <th>Project Conclusion</th>
+            </tr>
+            <tr>
+                <td>Can AQI risk be predicted?</td>
+                <td>Yes, with consistently strong model performance across methods.</td>
+            </tr>
+            <tr>
+                <td>Which methods were most effective?</td>
+                <td>SVM and Ensemble methods showed the best reliability in this run.</td>
+            </tr>
+            <tr>
+                <td>Is this useful in practice?</td>
+                <td>Yes, for earlier warnings, safer activity planning, and better public communication.</td>
+            </tr>
+        </table>
+
         <img src="viz13_city_comparison.png" alt="City-to-city AQI comparison">
+
+        <h3>Practical Recommendations</h3>
+        <ul class="takeaway-list">
+            <li>Use model outputs to trigger early public alerts on likely poor-air days.</li>
+            <li>Share city-specific AQI trends so local planning can be targeted.</li>
+            <li>Pair predictions with clear non-technical messaging for schools and households.</li>
+        </ul>
+
+        <h3>Future Scope</h3>
         <p>
-            The end of this story is hopeful: with regular data collection and clear communication, cities can respond earlier and people can protect themselves better. The most important outcome is not just better charts or model scores, but better decisions for everyday health.
+            The next step is to connect this pipeline to live data streams and automate daily risk updates. Adding weather feeds, traffic indicators, and regional events could make predictions even more timely. A public dashboard with simple color-coded alerts would convert model output into immediate community value.
+        </p>
+
+        <p>
+            The end of this story is optimistic: with regular data collection and clear communication, cities can respond sooner and people can protect themselves better. The most important outcome is not only model accuracy, but practical action that improves everyday health.
         </p>
     </div>
 </div>
